@@ -17,7 +17,6 @@ class weather:
         'date': dt_string[0],
         'time': dt_string[1]}
     url=f"https://data.tmd.go.th/nwpapi/v1/forecast/area/place?domain=2&province={endPoint['province']}&amphoe={endPoint['amphoe']}&fields=tc,rh&starttime={endPoint['date']}T{endPoint['time']}"
-    #changeLocation= f"https://data.tmd.go.th/nwpapi/v1/forecast/area/place?domain=2&province={weather.endPoint['province']}&amphoe={endPoint['amphoe']}&fields=tc,rh&starttime={endPoint['date']}T{endPoint['time']}"
     token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImVmYmZjMjUwN2FjZjdiYjBmYTJjM2FiNTlkMTA0NzQ0OTlhNDJiZmZhZjlkYzc2OGY5NDM3M2M4MmUxY2FhZTRjYjYyZjU1Y2VlNzQ2OWY0In0.eyJhdWQiOiIyIiwianRpIjoiZWZiZmMyNTA3YWNmN2JiMGZhMmMzYWI1OWQxMDQ3NDQ5OWE0MmJmZmFmOWRjNzY4Zjk0MzczYzgyZTFjYWFlNGNiNjJmNTVjZWU3NDY5ZjQiLCJpYXQiOjE2NzUyNDk3MzksIm5iZiI6MTY3NTI0OTczOSwiZXhwIjoxNzA2Nzg1NzM5LCJzdWIiOiIyMzk5Iiwic2NvcGVzIjpbXX0.a5MlC5MnGD3gdTOmrfDD457LyEQgOL-G_pKbV-XF2nfDL-TAR7ipkiMd22XMiOvxa5zuQKsvDzD4q4l3CNHgAsztSo4PBn8EdaAMuwlZLlwvta5DwM2hcOWwWzW9O4C6lNKHhWAhiT5eKb6NVApPd57SLJSgLrAmJe6ftvRIOr0TG9Q363yPF9zsoXCLpm0D7ygtONuh2AGwHNs1yB5XpCuGYVRwY9RcKSOD9nJJjUgTIjhFZwg3o7_DaTlByweFZT6FwVr-TOmCBLmtjf2hft7Y3wTGZzQHQJKT_jt9fKLujISxYbrO7OQdcBC5IVapMfcKN6FX-Celdgo9tEyWcCP2dNQ45r07RQBcVrZAhWpLO3XyDrpfpc5nvVVVHiBYWt-E89jwFSUYJJXHqABhw_KouUgQtxfUW_hov_t0p0cICieY2DUBpWhJeWxnFJPk4k4xCmyUH_kYmpYzJV9phJwKl0wj6pd8jP6WlNbr97QzVI5xJwpQAW7EaWZWp-Q6I8su-6na0uxCnYMBrE8PUhxoLp8rWJDxq0X0pGLSmn_t_SDcJ2ev_8yPWW65yXThD4yKP-xsSxLgHeMfgpt9N4XjkLnViofmWXI6flu4mqa0ZYrzbuYvm8OFJhHI7vRtWloF5sl5Qb8h1F5H-79w-706nHjkkUFRiaB75Ff5i4w'
     headers={'accept': 'application/json','authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImVmYmZjMjUwN2FjZjdiYjBmYTJjM2FiNTlkMTA0NzQ0OTlhNDJiZmZhZjlkYzc2OGY5NDM3M2M4MmUxY2FhZTRjYjYyZjU1Y2VlNzQ2OWY0In0.eyJhdWQiOiIyIiwianRpIjoiZWZiZmMyNTA3YWNmN2JiMGZhMmMzYWI1OWQxMDQ3NDQ5OWE0MmJmZmFmOWRjNzY4Zjk0MzczYzgyZTFjYWFlNGNiNjJmNTVjZWU3NDY5ZjQiLCJpYXQiOjE2NzUyNDk3MzksIm5iZiI6MTY3NTI0OTczOSwiZXhwIjoxNzA2Nzg1NzM5LCJzdWIiOiIyMzk5Iiwic2NvcGVzIjpbXX0.a5MlC5MnGD3gdTOmrfDD457LyEQgOL-G_pKbV-XF2nfDL-TAR7ipkiMd22XMiOvxa5zuQKsvDzD4q4l3CNHgAsztSo4PBn8EdaAMuwlZLlwvta5DwM2hcOWwWzW9O4C6lNKHhWAhiT5eKb6NVApPd57SLJSgLrAmJe6ftvRIOr0TG9Q363yPF9zsoXCLpm0D7ygtONuh2AGwHNs1yB5XpCuGYVRwY9RcKSOD9nJJjUgTIjhFZwg3o7_DaTlByweFZT6FwVr-TOmCBLmtjf2hft7Y3wTGZzQHQJKT_jt9fKLujISxYbrO7OQdcBC5IVapMfcKN6FX-Celdgo9tEyWcCP2dNQ45r07RQBcVrZAhWpLO3XyDrpfpc5nvVVVHiBYWt-E89jwFSUYJJXHqABhw_KouUgQtxfUW_hov_t0p0cICieY2DUBpWhJeWxnFJPk4k4xCmyUH_kYmpYzJV9phJwKl0wj6pd8jP6WlNbr97QzVI5xJwpQAW7EaWZWp-Q6I8su-6na0uxCnYMBrE8PUhxoLp8rWJDxq0X0pGLSmn_t_SDcJ2ev_8yPWW65yXThD4yKP-xsSxLgHeMfgpt9N4XjkLnViofmWXI6flu4mqa0ZYrzbuYvm8OFJhHI7vRtWloF5sl5Qb8h1F5H-79w-706nHjkkUFRiaB75Ff5i4w'}
     
@@ -60,6 +59,26 @@ class weather:
             'amphoe': '',
             'date': weather.dt_string[0],
             'time': weather.dt_string[1]}
+    
+    def change_city(window):
+        xpos, ypos = window.current_location()
+        new_city = sg.popup_get_text('Enter province and amphoe',keep_on_top=True, location=(xpos+405, ypos))
+        dataChange = str(new_city).split()
+        if new_city is not None:
+            weather.endPoint['province'] = dataChange[0]
+            weather.endPoint['amphoe'] = dataChange[1]
+            weather.changeEnpoint(weather.endPoint['province'], weather.endPoint['amphoe'])
+
+    def changeEnpoint(e1, e2):
+        try:
+            changeLocation= f"https://data.tmd.go.th/nwpapi/v1/forecast/area/place?domain=2&province={e1}&amphoe={e2}&fields=tc,rh&starttime={weather.endPoint['date']}T{weather.endPoint['time']}"
+            # print('this is ->', changeLocation)
+            # test = gui.APP_DATA['Temp']
+            gui.show_display(gui)
+            # print('this is ->', test)
+            return changeLocation
+        except ConnectionError:
+            return
 
 
         
@@ -78,7 +97,7 @@ class gui(weather):
     timeout_minutes = 5 * (60 * 1000)
     
     APP_DATA = {
-        'City': 'ปทุมธานี',
+        'City': weather.endPoint['province'],
         'Country': 'TH',
         'Postal': None,
         'Description': 'clear skys',
@@ -100,10 +119,10 @@ class gui(weather):
         num = sg.Text(gui.APP_DATA[metric], font=('Arial', 10, 'bold'), pad=(0, 0), size=(9, 1), key=metric)
         return [lbl, num]
 
-    def metric_row(metric):
-        lbl = sg.Text(metric, font=('Arial', 10), pad=(15, 0), size=(9, 1))
-        num = sg.Text(gui.APP_DATA[metric], font=('Arial', 10, 'bold'), pad=(0, 0), size=(9, 1), key=metric)
-        return [lbl, num]
+    # def metric_row(metric):
+    #     lbl = sg.Text(metric, font=('Arial', 10), pad=(15, 0), size=(9, 1))
+    #     num = sg.Text(gui.APP_DATA[metric], font=('Arial', 10, 'bold'), pad=(0, 0), size=(9, 1), key=metric)
+    #     return [lbl, num]
 
     def create_window():
         col1 = sg.Column(
@@ -144,7 +163,6 @@ class gui(weather):
             event, _ = window.read(timeout=gui.timeout_minutes)
             if event in (None, '-QUIT-'):
                 break
-
     #if event == '-CHANGE-':
     #   change_city(window)
     # Update per refresh rate
@@ -153,7 +171,7 @@ class gui(weather):
         window.close()
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#gui.APP_DATA['Temp'] = weather.get_temp()
-a=gui()
-a.show_display()
+gui.APP_DATA['Temp'] = weather.get_temp()
+gui.show_display()
+
 
