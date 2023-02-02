@@ -11,15 +11,15 @@ endPoint = {
     'time': dt_string[1]}
 
 sg.ChangeLookAndFeel('lightblue')
-BG_COLOR = "#FFC13F" #sg.theme_text_color()
-TXT_COLOR = "#000000" #sg.theme_background_color()
+BG_COLOR = "#3124e3" #sg.theme_text_color()
+TXT_COLOR = "#edfaf9" #sg.theme_background_color()
 ALPHA = 0.8
 
 APP_DATA = {
-    'City': 'Charlotte',
+    'City': 'ปทุมธานี',
     'Country': 'US',
     'Postal': None,
-    'Description': 'clear skys',
+    'Description': 'คลองหลวง',
     'Temp': 101.0,
     'Feels Like': 72.0,
     'Wind': 0.0,
