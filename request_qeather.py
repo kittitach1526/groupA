@@ -22,7 +22,7 @@ class weather:
     def __init__(self) -> None:
         pass
 
-    def get_temp(seft):
+    def get_temp(self):
         weather.get_date_time()
         r = requests.get(weather.url,headers=weather.headers)
         data= json.loads(r.text)
@@ -72,6 +72,9 @@ class weather:
         try:
             changeLocation= f"https://data.tmd.go.th/nwpapi/v1/forecast/area/place?domain=2&province={e1}&amphoe={e2}&fields=tc,rh&starttime={weather.endPoint['date']}T{weather.endPoint['time']}"
             # print('this is ->', changeLocation)
+            # test = gui.APP_DATA['Temp']
+            gui.show_display(gui)
+            # print('this is ->', test)
             return changeLocation
         except ConnectionError:
             return
@@ -111,10 +114,10 @@ class gui(weather):
         num = sg.Text(gui.APP_DATA[metric], font=('Arial', 10, 'bold'), pad=(0, 0), size=(9, 1), key=metric)
         return [lbl, num]
 
-    def metric_row(metric):
-        lbl = sg.Text(metric, font=('Arial', 10), pad=(15, 0), size=(9, 1))
-        num = sg.Text(gui.APP_DATA[metric], font=('Arial', 10, 'bold'), pad=(0, 0), size=(9, 1), key=metric)
-        return [lbl, num]
+    # def metric_row(metric):
+    #     lbl = sg.Text(metric, font=('Arial', 10), pad=(15, 0), size=(9, 1))
+    #     num = sg.Text(gui.APP_DATA[metric], font=('Arial', 10, 'bold'), pad=(0, 0), size=(9, 1), key=metric)
+    #     return [lbl, num]
 
     def create_window():
         col1 = sg.Column(
