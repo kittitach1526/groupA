@@ -29,7 +29,7 @@ temp = data_keydata[3].split(" ")
 temp = str(temp[3])
 # print(data_keydata[3]+" /////"+data_keydata[4])
 # print(data_keydata[3])
-# print(temp)
+print(temp)
 
 
 class weather :
