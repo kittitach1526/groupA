@@ -23,7 +23,7 @@ class weather:
         pass
 
     def get_temp():
-        r = requests.get(url,headers=headers)
+        r = requests.get(weather.url,headers=weather.headers)
         data= json.loads(r.text)
         # print('this --> json', data)
         data_weather = data['WeatherForecasts']
