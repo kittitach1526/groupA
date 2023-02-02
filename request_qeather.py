@@ -138,8 +138,6 @@ while True:
         # Update per refresh rate
         #request_weather_data(create_endpoint(2))
     #    update_metrics(window)
-
-    
     window.close()
 
 #data = weather.get_temp()
