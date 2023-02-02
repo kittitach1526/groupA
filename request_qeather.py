@@ -118,7 +118,7 @@ class gui(weather):
         'Humidity': 0,
         'Precip 1hr': 0.0,
         'Pressure': 0,
-        'Updated': 'Not yet updated',
+        'Updated': f'วันที่ {weather.dt_string[0]} เวลา {weather.dt_string[1]}',
         'Icon': None,
         'Units': 'Imperial'
     }
