@@ -5,6 +5,10 @@ import PySimpleGUI as sg
 
 province = "ปทุมธานี"
 amphore ="คลองหลวง"
+dataChange = {
+    'prov': None,
+    'temp': None
+}
     
 class weather:
     temp=0
@@ -69,18 +73,25 @@ class weather:
             weather.changeEnpoint(weather.endPoint['province'], weather.endPoint['amphoe'])
 
     def changeEnpoint(e1, e2):
+        global dataChange
         try:
             changeLocation= f"https://data.tmd.go.th/nwpapi/v1/forecast/area/place?domain=2&province={e1}&amphoe={e2}&fields=tc,rh&starttime={weather.endPoint['date']}T{weather.endPoint['time']}"
-            # print('this is ->', changeLocation)
-            # test = gui.APP_DATA['Temp']
-            gui.show_display(gui)
-            # print('this is ->', test)
+            weather.get_date_time()
+            r = requests.get(changeLocation,headers=weather.headers)
+            data= json.loads(r.text)
+            data_weather = data['WeatherForecasts']
+            data_weather = data_weather[2]
+            data_keydata = str(data_weather)
+            data_keydata = data_keydata.split(",")
+            temp = data_keydata[3].split(" ")
+            weather.temp = str(temp[3])
+            dataChange['temp'] =  weather.temp
+            dataChange['prov'] =  e1
+            print('this is test', changeLocation)
             return changeLocation
         except ConnectionError:
             return
 
-
-        
 
 #data = weather.get_temp()
 #print(data)
@@ -160,13 +171,20 @@ class gui(weather):
                 break
             if event == '-CHANGE-':
                 weather.change_city(window)
+                gui.APP_DATA['Temp'] = dataChange['temp']
+                gui.APP_DATA['City'] = dataChange['prov']
+                window.close()
+                window = gui.create_window()
+
     #Update per refresh rate
     #request_weather_data(create_endpoint(2))
     #update_metrics(window)
-        window.close()
+        # window.close()
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 a = gui()
 a.show_display()
+
+m = weather()
 
 
