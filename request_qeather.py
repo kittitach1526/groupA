@@ -33,6 +33,24 @@ class weather:
         weather.temp = str(temp[3])
         return weather.temp
 
+    def get_humidity():
+        r = requests.get(weather.url,headers=weather.headers)
+        data= json.loads(r.text)
+        # print('this --> json', data)
+        data_weather = data['WeatherForecasts']
+        data_weather = data_weather[2]
+        data_keydata = str(data_weather)
+        data_keydata = data_keydata.split(",")
+        hum = data_keydata[4].split(" ")
+        #print(hum)
+        hum = str(hum[2])
+        hum= hum.split("}")
+        weather.hum = str(hum[0])
+        return weather.hum
 
-data = weather.get_temp()
-print(data)
+
+#data = weather.get_temp()
+#print(data)
+#data = weather.get_humidity()
+#print(data)
+
