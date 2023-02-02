@@ -1,7 +1,7 @@
 import requests
 import json
 from datetime import datetime, timedelta
-
+import PySimpleGUI as sg
 today = datetime.now() + timedelta(days=0, hours=0)
 dt_string = today.strftime("%Y-%m-%d %H:00:00").split()
 endPoint = {
@@ -10,6 +10,32 @@ endPoint = {
     'date': dt_string[0],
     'time': dt_string[1]}
 
+sg.ChangeLookAndFeel('lightblue')
+BG_COLOR = "#FFC13F" #sg.theme_text_color()
+TXT_COLOR = "#000000" #sg.theme_background_color()
+ALPHA = 0.8
+
+APP_DATA = {
+    'City': 'Charlotte',
+    'Country': 'US',
+    'Postal': None,
+    'Description': 'clear skys',
+    'Temp': 101.0,
+    'Feels Like': 72.0,
+    'Wind': 0.0,
+    'Humidity': 0,
+    'Precip 1hr': 0.0,
+    'Pressure': 0,
+    'Updated': 'Not yet updated',
+    'Icon': None,
+    'Units': 'Imperial'
+}
+timeout_minutes = 5* (60 * 1000)
+def metric_row(metric):
+    """ Return a pair of labels for each metric """
+    lbl = sg.Text(metric, font=('Arial', 10), pad=(15, 0), size=(9, 1))
+    num = sg.Text(APP_DATA[metric], font=('Arial', 10, 'bold'), pad=(0, 0), size=(9, 1), key=metric)
+    return [lbl, num]
 
 class weather:
     temp=0
@@ -49,6 +75,71 @@ class weather:
         weather.hum = str(hum[0])
         return weather.hum
 
+class gui:
+
+    def __init__(self) -> None:
+        pass
+
+def create_window():
+    """ Create the application window """
+    col1 = sg.Column(
+        [[sg.Text(APP_DATA['City'], font=('Arial Rounded MT Bold', 18), pad=((10, 0), (50, 0)), size=(18, 1), background_color=BG_COLOR, text_color=TXT_COLOR, key='City')],
+        [sg.Text(APP_DATA['Description'], font=('Arial', 12), pad=(10, 0), background_color=BG_COLOR, text_color=TXT_COLOR, key='Description')]],
+            background_color=BG_COLOR, key='COL1')
+
+    col2 = sg.Column(
+        [[sg.Text('×', font=('Arial Black', 16), pad=(0, 0), justification='right', background_color=BG_COLOR, text_color=TXT_COLOR, enable_events=True, key='-QUIT-')],
+        [sg.Image(data=APP_DATA['Icon'], pad=((5, 10), (0, 0)), size=(100, 100), background_color=BG_COLOR, key='Icon')]],
+            element_justification='center', background_color=BG_COLOR, key='COL2')
+
+    col3 = sg.Column(
+        [[sg.Text(APP_DATA['Updated'], font=('Arial', 8), background_color=BG_COLOR, text_color=TXT_COLOR, key='Updated')]],
+            pad=(10, 5), element_justification='left', background_color=BG_COLOR, key='COL3')
+
+    col4 = sg.Column(
+        [[sg.Text('click to change city', font=('Arial', 8, 'italic'), background_color=BG_COLOR, text_color=TXT_COLOR, enable_events=True, key='-CHANGE-')]],
+            pad=(10, 5), element_justification='right', background_color=BG_COLOR, key='COL4')
+
+    top_col = sg.Column([[col1, col2]], pad=(0, 0), background_color=BG_COLOR, key='TopCOL')
+
+    bot_col = sg.Column([[col3, col4]], pad=(0, 0), background_color=BG_COLOR, key='BotCOL')
+
+    lf_col = sg.Column(
+        [[sg.Text(APP_DATA['Temp'], font=('Haettenschweiler', 90), pad=((10, 0), (0, 0)), justification='center', key='Temp')]],
+            pad=(10, 0), element_justification='center', key='LfCOL')
+
+    rt_col = sg.Column(
+        [metric_row('Feels Like'), metric_row('Wind'), metric_row('Humidity'), metric_row('Precip 1hr'), metric_row('Pressure')],
+            pad=((15, 0), (25, 5)), key='RtCOL')
+
+    layout = [[top_col], [lf_col, rt_col], [bot_col]]
+
+    window = sg.Window(layout=layout, title='Weather Widget', size=(400, 315), margins=(0, 0), finalize=True, 
+        element_justification='center', keep_on_top=True, no_titlebar=True, grab_anywhere=True, alpha_channel=ALPHA)
+
+    for col in ['COL1', 'COL2', 'TopCOL', 'BotCOL', '-QUIT-']:
+        window[col].expand(expand_y=True, expand_x=True)
+
+    for col in ['COL3', 'COL4', 'LfCOL', 'RtCOL']:
+        window[col].expand(expand_x=True)
+
+    return window
+
+window = create_window()
+
+# Event loop
+while True:
+    event, _ = window.read(timeout=timeout_minutes)
+    if event in (None, '-QUIT-'):
+        break
+    if event == '-CHANGE-':
+        change_city(window)
+
+        # Update per refresh rate
+        request_weather_data(create_endpoint(2))
+        update_metrics(window)
+
+    window.close()
 
 #data = weather.get_temp()
 #print(data)
