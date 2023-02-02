@@ -50,13 +50,14 @@ class weather:
 #print(data)
 #data = weather.get_humidity()
 #print(data)
-#--------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------------------------------------
 class gui:
     sg.ChangeLookAndFeel('lightblue')
     BG_COLOR = "#FFC13F" #sg.theme_text_color()
     TXT_COLOR = "#000000" #sg.theme_background_color()
     ALPHA = 0.8
     timeout_minutes = 5 * (60 * 1000)
+    
     APP_DATA = {
         'City': 'Charlotte',
         'Country': 'US',
@@ -103,7 +104,7 @@ class gui:
             [[sg.Text(gui.APP_DATA['Temp'], font=('Haettenschweiler', 90), pad=((10, 0), (0, 0)), justification='center', key='Temp')]],
                 pad=(10, 0), element_justification='center', key='LfCOL')
         rt_col = sg.Column(
-            [gui.metric_row('Feels Like'), gui.metric_row('Wind'), gui.metric_row('Humidity'), gui.metric_row('Precip 1hr'), gui.metric_row('Pressure')],
+            [gui.metric_row('Temp'),gui.metric_row('Humidity')],#gui.metric_row('Feels Like'), gui.metric_row('Wind'), , gui.metric_row('Precip 1hr'), gui.metric_row('Pressure')
                 pad=((15, 0), (25, 5)), key='RtCOL')
         layout = [[top_col], [lf_col, rt_col], [bot_col]]
         window = sg.Window(layout=layout, title='Weather Widget', size=(400, 315), margins=(0, 0), finalize=True, 
@@ -126,7 +127,7 @@ class gui:
     #request_weather_data(create_endpoint(2))
     #update_metrics(window)
         window.close()
-
+#--------------------------------------------------------------------------------------------------------------------------------------------------------
 gui.show_display()
 
 
