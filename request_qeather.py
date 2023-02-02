@@ -37,6 +37,7 @@ def metric_row(metric):
     num = sg.Text(APP_DATA[metric], font=('Arial', 10, 'bold'), pad=(0, 0), size=(9, 1), key=metric)
     return [lbl, num]
 
+
 class weather:
     temp=0
     hum =0
@@ -131,13 +132,14 @@ while True:
     event, _ = window.read(timeout=timeout_minutes)
     if event in (None, '-QUIT-'):
         break
-    if event == '-CHANGE-':
-        change_city(window)
+   # if event == '-CHANGE-':
+        #change_city(window)
 
         # Update per refresh rate
-        request_weather_data(create_endpoint(2))
-        update_metrics(window)
+        #request_weather_data(create_endpoint(2))
+    #    update_metrics(window)
 
+    
     window.close()
 
 #data = weather.get_temp()
