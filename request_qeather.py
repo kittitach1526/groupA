@@ -22,7 +22,7 @@ class weather:
     def __init__(self) -> None:
         pass
 
-    def get_temp():
+    def get_temp(seft):
         weather.get_date_time()
         r = requests.get(weather.url,headers=weather.headers)
         data= json.loads(r.text)
@@ -71,7 +71,7 @@ class weather:
     def changeEnpoint(e1, e2):
         try:
             changeLocation= f"https://data.tmd.go.th/nwpapi/v1/forecast/area/place?domain=2&province={e1}&amphoe={e2}&fields=tc,rh&starttime={weather.endPoint['date']}T{weather.endPoint['time']}"
-            # print('this is ->', changeLocation)
+            print('this is ->', changeLocation)
             return changeLocation
         except ConnectionError:
             return
@@ -148,7 +148,8 @@ class gui(weather):
             window[col].expand(expand_x=True)
         return window
 
-    def show_display():
+    def show_display(self):
+        gui.APP_DATA['Temp'] = self.get_temp()
         window = gui.create_window()
         while True:
             event, _ = window.read(timeout=gui.timeout_minutes)
@@ -162,7 +163,7 @@ class gui(weather):
         window.close()
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
 
-gui.APP_DATA['Temp'] = weather.get_temp()
-gui.show_display()
+a = gui()
+a.show_display()
 
 
