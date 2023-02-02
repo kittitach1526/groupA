@@ -154,7 +154,7 @@ def change_city(window):
 def update_metrics(window):
     """ Adjust the GUI to reflect the current weather metrics """
     metrics = ['City', 'Temp', 'Feels Like', 'Wind', 'Humidity', 'Precip 1hr',
-               'Description', 'Icon', 'Pressure', 'Updated']
+            'Description', 'Icon', 'Pressure', 'Updated']
     for metric in metrics:
         if metric == 'Icon':
             window[metric].update(data=APP_DATA[metric])
