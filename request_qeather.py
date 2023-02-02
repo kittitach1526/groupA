@@ -71,7 +71,7 @@ class weather:
     def changeEnpoint(e1, e2):
         try:
             changeLocation= f"https://data.tmd.go.th/nwpapi/v1/forecast/area/place?domain=2&province={e1}&amphoe={e2}&fields=tc,rh&starttime={weather.endPoint['date']}T{weather.endPoint['time']}"
-            print('this is ->', changeLocation)
+            # print('this is ->', changeLocation)
             return changeLocation
         except ConnectionError:
             return
