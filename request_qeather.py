@@ -10,7 +10,7 @@ endPoint = {
     'date': dt_string[0],
     'time': dt_string[1]
 }
-print('today', dt_string)
+#print('today', dt_string)
 
 
 url=f"https://data.tmd.go.th/nwpapi/v1/forecast/area/place?domain=2&province=ปทุมธานี&amphoe=คลองหลวง&fields=tc,rh&starttime={endPoint['date']}T{endPoint['time']}"
