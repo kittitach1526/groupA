@@ -142,7 +142,7 @@ class gui(weather):
         num = sg.Text(gui.APP_DATA[metric], font=(
             'Arial', 10, 'bold'), pad=(0, 0), size=(9, 1), key=metric)
         return [lbl, num]
-        
+
     def create_window():
         col1 = sg.Column(
             [[sg.Text(gui.APP_DATA['City'], font=('Arial Rounded MT Bold', 20), pad=((10, 0), (50, 0)), size=(
@@ -154,10 +154,10 @@ class gui(weather):
             element_justification='center', background_color=gui.BG_COLOR, key='COL2')
         col3 = sg.Column(
             [[sg.Text(gui.APP_DATA['Updated'], font=(
-                'Arial', 8), background_color=gui.BG_COLOR, text_color=gui.TXT_COLOR, key='Updated')]],
+                'Arial', 10), background_color=gui.BG_COLOR, text_color=gui.TXT_COLOR, key='Updated')]],
             pad=(10, 5), element_justification='left', background_color=gui.BG_COLOR, key='COL3')
         col4 = sg.Column(
-            [[sg.Text('คลิกเพื่อเปลี่ยนพื้นที่', font=('Arial', 12), background_color=gui.BG_COLOR,  # 'italic'
+            [[sg.Text('คลิกเพื่อเปลี่ยนพื้นที่', font=('Arial', 10), background_color=gui.BG_COLOR,  # 'italic'
                       text_color=gui.TXT_COLOR, enable_events=True, key='-CHANGE-')]],
             pad=(10, 5), element_justification='right', background_color=gui.BG_COLOR, key='COL4')
         top_col = sg.Column([[col1, col2]], pad=(
