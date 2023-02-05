@@ -12,6 +12,7 @@ dataChange = {
     'amphoe': None,
 }
 
+
 class weather:
     temp = 0
     hum = 0
@@ -101,14 +102,14 @@ class weather:
             dataChange['prov'] = e1
             dataChange['amphoe'] = e2
             dataChange['Humidity'] = weather.hum
-            print('this is test', weather.hum)
-            print('this is test 2', weather.temp)
             # print('this is test', changeLocation)
             return changeLocation
         except (ConnectionError, IndexError):
             sg.popup(("ไม่พบพื้นที่ที่ระบุ"), keep_on_top=True)
             return
 # --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 class gui(weather):
 
     sg.ChangeLookAndFeel('lightblue')
@@ -119,7 +120,7 @@ class gui(weather):
     todayGui = datetime.now() + timedelta(days=0, hours=0)
     dt_stringGui = todayGui.strftime("%Y-%m-%d %H:%M:%S").split()
     APP_DATA = {
-        'City': weather.endPoint['province'] + ' ' + weather.endPoint['amphoe'],
+        'City': weather.endPoint['province'] + '  อ.' + weather.endPoint['amphoe'],
         'Country': 'TH',
         'Postal': None,
         'Description': 'clear skys',
@@ -173,7 +174,7 @@ class gui(weather):
             [gui.metric_row('อุณหภูมิ'), gui.metric_row('ความชื้น')],
             pad=((15, 0), (25, 5)), key='RtCOL')
         layout = [[top_col], [lf_col, rt_col], [bot_col]]
-        window = sg.Window(layout=layout, title='Weather Widget', size=(455, 315), margins=(0, 0), finalize=True,
+        window = sg.Window(layout=layout, title='Weather Widget', size=(480, 315), margins=(0, 0), finalize=True,
                            element_justification='center', keep_on_top=True, no_titlebar=True, grab_anywhere=True, alpha_channel=gui.ALPHA)
         for col in ['COL1', 'COL2', 'TopCOL', 'BotCOL', '-QUIT-']:
             window[col].expand(expand_y=True, expand_x=True)
@@ -193,13 +194,14 @@ class gui(weather):
                 if event == '-CHANGE-':
                     weather.change_city(window)
                     gui.APP_DATA['อุณหภูมิ'] = dataChange['temp']
-                    gui.APP_DATA['City'] = dataChange['prov'] + \
-                        ' ' + dataChange['amphoe']
+                    gui.APP_DATA['City'] = dataChange['prov'] + ' อ.' + dataChange['amphoe']
                     gui.APP_DATA['ความชื้น'] = dataChange['Humidity']
                     window.close()
                     window = gui.create_window()
             except (KeyError, ValueError, TypeError, ):
                 pass
+
+
 # --------------------------------------------------------------------------------------------------------------------------------------------------------
 a = gui()
 m = weather()
