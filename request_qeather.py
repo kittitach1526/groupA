@@ -12,7 +12,6 @@ dataChange = {
     'amphoe': None,
 }
 
-
 class weather:
     temp = 0
     hum = 0
@@ -109,12 +108,6 @@ class weather:
         except (ConnectionError, IndexError):
             sg.popup(("ไม่พบพื้นที่ที่ระบุ"), keep_on_top=True)
             return
-
-
-# data = weather.get_temp()
-# print(data)
-# data = weather.get_humidity()
-# print(data)
 # --------------------------------------------------------------------------------------------------------------------------------------------------------
 class gui(weather):
 
@@ -149,12 +142,7 @@ class gui(weather):
         num = sg.Text(gui.APP_DATA[metric], font=(
             'Arial', 10, 'bold'), pad=(0, 0), size=(9, 1), key=metric)
         return [lbl, num]
-
-    # def metric_row(metric):
-    #     lbl = sg.Text(metric, font=('Arial', 10), pad=(15, 0), size=(9, 1))
-    #     num = sg.Text(gui.APP_DATA[metric], font=('Arial', 10, 'bold'), pad=(0, 0), size=(9, 1), key=metric)
-    #     return [lbl, num]
-
+        
     def create_window():
         col1 = sg.Column(
             [[sg.Text(gui.APP_DATA['City'], font=('Arial Rounded MT Bold', 20), pad=((10, 0), (50, 0)), size=(
@@ -212,13 +200,10 @@ class gui(weather):
                     window = gui.create_window()
             except (KeyError, ValueError, TypeError, ):
                 pass
-
-
 # --------------------------------------------------------------------------------------------------------------------------------------------------------
 a = gui()
 m = weather()
 
 a.show_display()
-
 
 # co1 [sg.Text(gui.APP_DATA['Description'], font=('Arial', 12), pad=(10, 0), background_color=gui.BG_COLOR, text_color=gui.TXT_COLOR, key='Description')]
