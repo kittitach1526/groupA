@@ -146,13 +146,16 @@ class gui(weather):
 
     def create_window():
         col1 = sg.Column(
-            [[sg.Text(gui.APP_DATA['City'], font=('Arial Rounded MT Bold', 20), pad=((10, 0), (50, 0)), size=(
+            [[sg.Text(gui.APP_DATA['City'], font=('Arial Rounded MT Bold', 20), pad=((22, 100), (25, 0)), size=(
                 18, 1), background_color=gui.BG_COLOR, text_color=gui.TXT_COLOR, key='City')]],
             background_color=gui.BG_COLOR, key='COL1')
         col2 = sg.Column(
-            [[sg.Text('×', font=('Arial Black', 16), pad=(0, 0), justification='right', background_color=gui.BG_COLOR, text_color=gui.TXT_COLOR, enable_events=True, key='-QUIT-')],
-             [sg.Image(data=gui.APP_DATA['Icon'], pad=((5, 10), (0, 0)), size=(100, 100), background_color=gui.BG_COLOR, key='Icon')]],
+            [[sg.Text('×', font=('Arial Black', 16), pad=((1, 1), (1, 1)), justification='center', background_color=gui.BG_COLOR, text_color=gui.TXT_COLOR, enable_events=True, key='-QUIT-')]],
             element_justification='center', background_color=gui.BG_COLOR, key='COL2')
+        # col2 = sg.Column(
+        #     [[sg.Text('×', font=('Arial Black', 16), pad=(0, 0), justification='right', background_color=gui.BG_COLOR, text_color=gui.TXT_COLOR, enable_events=True, key='-QUIT-')],
+        #      [sg.Image(data=gui.APP_DATA['Icon'], pad=((5, 10), (0, 0)), size=(100, 100), background_color=gui.BG_COLOR, key='Icon')]],
+        #     element_justification='center', background_color=gui.BG_COLOR, key='COL2')
         col3 = sg.Column(
             [[sg.Text(gui.APP_DATA['Updated'], font=(
                 'Arial', 10), background_color=gui.BG_COLOR, text_color=gui.TXT_COLOR, key='Updated')]],
