@@ -34,6 +34,7 @@ class weather:
         weather.get_date_time()
         r = requests.get(weather.url, headers=weather.headers)
         data = json.loads(r.text)
+        print('----->',data)
         data_weather = data['WeatherForecasts']
         data_weather = data_weather[2]
         data_keydata = str(data_weather)
